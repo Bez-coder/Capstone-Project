@@ -4,7 +4,7 @@
 
 This is a Django-based web application designed to streamline the process of booking medical appointments. Built as a capstone project, it demonstrates full-stack development skills including authentication, database modeling, and dynamic dashboard rendering.
 
-## 🚀 Features
+##  Features
 
 - **User Authentication**: Secure login and registration for doctors and patients.
 - **Role-Based Access**: Doctors and patients have distinct dashboards and permissions.
@@ -13,7 +13,7 @@ This is a Django-based web application designed to streamline the process of boo
 - **Responsive Design**: Clean UI built with Tailwind CSS for mobile and desktop.
 - **Admin Panel**: Django admin interface for managing users and appointments.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer        | Technology         |
 |--------------|--------------------|
@@ -22,7 +22,7 @@ This is a Django-based web application designed to streamline the process of boo
 | Database     | SQLite (default)   |
 | Auth System  | Django Auth Views  |
 
-## 📦 Installation
+## Installation
 
 ```bash
 git clone https://github.com/Bez-coder/Capstone-Project.git
