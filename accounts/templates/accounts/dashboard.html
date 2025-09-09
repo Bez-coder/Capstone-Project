@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow">
+  <h1 class="text-2xl font-bold text-slate-800">Welcome, {{ request.user.username }}</h1>
+  <p class="text-slate-600 mt-2">Role: <strong class="text-slate-800">{{ request.user.role }}</strong></p>
+
+  <div class="mt-4 text-slate-700">
+    <h2 class="text-lg font-semibold">About this app</h2>
+    <p class="mt-2">{{ description }}</p>
+  </div>
+
+  <div class="mt-6 grid md:grid-cols-2 gap-4">
+    {% if request.user.role == 'PATIENT' %}
+      <a href="{% url 'book_appointment' %}" class="block bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700">Book an Appointment</a>
+      <a href="{% url 'view_appointments' %}" class="block bg-blue-100 text-blue-700 text-center py-2 rounded hover:bg-blue-200">My Appointments</a>
+    {% elif request.user.role == 'DOCTOR' %}
+      <a href="{% url 'manage_appointments' %}" class="block bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700">Manage Appointments</a>
+      <a href="{% url 'set_availability' %}" class="block bg-blue-100 text-blue-700 text-center py-2 rounded hover:bg-blue-200">Set Availability</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

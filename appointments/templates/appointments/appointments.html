@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+{% load form_extras %}
+{% block content %}
+<div class="grid md:grid-cols-2 gap-6">
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Book Appointment</h2>
+    {% if request.user.role != 'PATIENT' %}
+      <p class="text-sm text-slate-600 mb-2">Only patients can book appointments. If you are a doctor, use the list to view bookings.</p>
+    {% endif %}
+    <form method="post" class="space-y-3">
+    {% csrf_token %}
+    <div>{{ form.doctor|add_class:'w-full border rounded p-2' }}</div>
+    <div class="grid grid-cols-2 gap-2">
+        <div>{{ form.date|add_class:'w-full border rounded p-2' }}</div>
+        <div>{{ form.time|add_class:'w-full border rounded p-2' }}</div>
+    </div>
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Book</button>
+</form>
+
+  </div>
+
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Appointments</h2>
+    <table class="min-w-full border border-slate-200">
+      <thead class="bg-slate-50">
+        <tr>
+          <th class="px-3 py-2 text-left">Patient</th>
+          <th class="px-3 py-2 text-left">Doctor</th>
+          <th class="px-3 py-2 text-left">Date</th>
+          <th class="px-3 py-2 text-left">Time</th>
+          <th class="px-3 py-2 text-left">Service</th>
+          <th class="px-3 py-2 text-left">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in appointments %}
+        <tr class="border-t">
+          <td class="px-3 py-2">{{ a.patient.username }}</td>
+          <td class="px-3 py-2">{{ a.doctor.username }}</td>
+          <td class="px-3 py-2">{{ a.date }}</td>
+          <td class="px-3 py-2">{{ a.time }}</td>
+          <td class="px-3 py-2">{{ a.service }}</td>
+          <td class="px-3 py-2">{{ a.status }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6" class="py-4 text-center text-slate-500">No appointments yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
